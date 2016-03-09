@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C7E2086-ED70-475F-9191-9C45EBEB176D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{A3D6FF35-BF27-4230-91EB-8EDD14CC409B}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Game</RootNamespace>
-    <AssemblyName>Game</AssemblyName>
+    <RootNamespace>Game.Map.Interfaces</RootNamespace>
+    <AssemblyName>Game.Map.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,25 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="MapWorker\IMapWorker.cs" />
+    <Compile Include="IMap.cs" />
+    <Compile Include="MapWorker\Models\MapCreateRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IoCResolver\Game.IoC.Implementation\Game.IoC.Implementation.csproj">
-      <Project>{cbb10d15-9d6c-4533-921c-b1ae09b47b28}</Project>
-      <Name>Game.IoC.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoCResolver\Game.IoC\Game.IoC.csproj">
-      <Project>{19e04ff3-a98e-4f4f-9685-4719485f8ff0}</Project>
-      <Name>Game.IoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Map\Game.Map.Interfaces\Game.Map.Interfaces.csproj">
-      <Project>{a3d6ff35-bf27-4230-91eb-8edd14cc409b}</Project>
-      <Name>Game.Map.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

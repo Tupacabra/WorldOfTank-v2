@@ -5,6 +5,18 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{4C7E2086-ED70-475F-9191-9C45EBEB176D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Map", "Map", "{D065094E-FF32-46DD-A688-E1C0CBC26606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.Map.Interfaces", "Map\Game.Map.Interfaces\Game.Map.Interfaces.csproj", "{A3D6FF35-BF27-4230-91EB-8EDD14CC409B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.Map.Implementation", "Map\Game.Map.Implementation\Game.Map.Implementation.csproj", "{785FB3E2-8C86-45A2-9949-17E94C0D3D24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoCResolver", "IoCResolver", "{98263789-E522-4FE8-9C08-9ABA29D98652}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.IoC", "IoCResolver\Game.IoC\Game.IoC.csproj", "{19E04FF3-A98E-4F4F-9685-4719485F8FF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.IoC.Implementation", "IoCResolver\Game.IoC.Implementation\Game.IoC.Implementation.csproj", "{CBB10D15-9D6C-4533-921C-B1AE09B47B28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +27,30 @@ Global
 		{4C7E2086-ED70-475F-9191-9C45EBEB176D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C7E2086-ED70-475F-9191-9C45EBEB176D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C7E2086-ED70-475F-9191-9C45EBEB176D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3D6FF35-BF27-4230-91EB-8EDD14CC409B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D6FF35-BF27-4230-91EB-8EDD14CC409B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D6FF35-BF27-4230-91EB-8EDD14CC409B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D6FF35-BF27-4230-91EB-8EDD14CC409B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785FB3E2-8C86-45A2-9949-17E94C0D3D24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785FB3E2-8C86-45A2-9949-17E94C0D3D24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785FB3E2-8C86-45A2-9949-17E94C0D3D24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785FB3E2-8C86-45A2-9949-17E94C0D3D24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E04FF3-A98E-4F4F-9685-4719485F8FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E04FF3-A98E-4F4F-9685-4719485F8FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E04FF3-A98E-4F4F-9685-4719485F8FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E04FF3-A98E-4F4F-9685-4719485F8FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB10D15-9D6C-4533-921C-B1AE09B47B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB10D15-9D6C-4533-921C-B1AE09B47B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB10D15-9D6C-4533-921C-B1AE09B47B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB10D15-9D6C-4533-921C-B1AE09B47B28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3D6FF35-BF27-4230-91EB-8EDD14CC409B} = {D065094E-FF32-46DD-A688-E1C0CBC26606}
+		{785FB3E2-8C86-45A2-9949-17E94C0D3D24} = {D065094E-FF32-46DD-A688-E1C0CBC26606}
+		{19E04FF3-A98E-4F4F-9685-4719485F8FF0} = {98263789-E522-4FE8-9C08-9ABA29D98652}
+		{CBB10D15-9D6C-4533-921C-B1AE09B47B28} = {98263789-E522-4FE8-9C08-9ABA29D98652}
 	EndGlobalSection
 EndGlobal
