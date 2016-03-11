@@ -1,4 +1,5 @@
-﻿using Game.Map.Interfaces.MapWorker.Models;
+﻿using Game.Map.Interfaces.Map;
+using Game.Map.Interfaces.MapWorker.Models;
 
 namespace Game.Map.Interfaces.MapWorker
 {

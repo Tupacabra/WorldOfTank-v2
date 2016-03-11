@@ -48,6 +48,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Game.Core.GameSession\Game.Core.GameSession.csproj">
+      <Project>{92c35456-1699-4f4a-b199-0d595416bc92}</Project>
+      <Name>Game.Core.GameSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Game.Core.Interfaces\Game.Core.Interfaces.csproj">
+      <Project>{44e7f299-f2dc-49a6-b501-1d3fcfeb1c56}</Project>
+      <Name>Game.Core.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Game.Core.Location\Game.Core.Location.csproj">
+      <Project>{43ca92ca-144f-463c-b2b4-47185aaafc7f}</Project>
+      <Name>Game.Core.Location</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Game.Core.UI\Game.Core.UI.csproj">
+      <Project>{815275fd-38c1-4623-b985-15c5aec56cf3}</Project>
+      <Name>Game.Core.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Map\Game.Map.Implementation\Game.Map.Implementation.csproj">
       <Project>{785fb3e2-8c86-45a2-9949-17e94c0d3d24}</Project>
       <Name>Game.Map.Implementation</Name>
@@ -55,6 +71,14 @@
     <ProjectReference Include="..\..\Map\Game.Map.Interfaces\Game.Map.Interfaces.csproj">
       <Project>{a3d6ff35-bf27-4230-91eb-8edd14cc409b}</Project>
       <Name>Game.Map.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Player\Game.Player.Implementation\Game.Player.Implementation.csproj">
+      <Project>{29df4a25-b9f3-49fa-abd0-aa16e9a65b9e}</Project>
+      <Name>Game.Player.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Player\Game.Player.Interfaces\Game.Player.Interfaces.csproj">
+      <Project>{cde54b63-7c60-49ea-8737-a09bd6f1c7fa}</Project>
+      <Name>Game.Player.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Game.IoC\Game.IoC.csproj">
       <Project>{19e04ff3-a98e-4f4f-9685-4719485f8ff0}</Project>

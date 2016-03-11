@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FieldWorker\Field.cs" />
+    <Compile Include="FieldWorker\FieldWorker.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapWorker\MapCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C7E2086-ED70-475F-9191-9C45EBEB176D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{44E7F299-F2DC-49A6-B501-1D3FCFEB1C56}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Game</RootNamespace>
-    <AssemblyName>Game</AssemblyName>
+    <RootNamespace>Game.Core.Interfaces</RootNamespace>
+    <AssemblyName>Game.Core.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,26 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="GameSession\IGameSession.cs" />
+    <Compile Include="GameSession\Models\ICurrentGame.cs" />
+    <Compile Include="GameSession\Models\NewGameParams.cs" />
+    <Compile Include="Location\ILocationManager.cs" />
+    <Compile Include="Location\Models\Location.cs" />
+    <Compile Include="Location\Models\LocationParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\IUIDrawing.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Game.Core.Interfaces\Game.Core.Interfaces.csproj">
-      <Project>{44e7f299-f2dc-49a6-b501-1d3fcfeb1c56}</Project>
-      <Name>Game.Core.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoCResolver\Game.IoC.Implementation\Game.IoC.Implementation.csproj">
-      <Project>{cbb10d15-9d6c-4533-921c-b1ae09b47b28}</Project>
-      <Name>Game.IoC.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoCResolver\Game.IoC\Game.IoC.csproj">
-      <Project>{19e04ff3-a98e-4f4f-9685-4719485f8ff0}</Project>
-      <Name>Game.IoC</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

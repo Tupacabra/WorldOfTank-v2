@@ -3,15 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Game.Map.Interfaces;
+using Game.Map.Interfaces.Map;
+using Game.Map.Interfaces.Map.Models;
 
 namespace Game.Map.Implementation
 {
-    public class Map:IMap
-    {
-		
-	    public string Message()
-	    {
-		    return "VDV";
-	    }
-    }
+	class Map:IMap
+	{
+
+		public Map(int height, int width)
+		{
+			Height = height;
+			Width = width;
+			Fields = new IField[Height, Width];
+		}
+
+		public int Height { get; private set; }
+		public int Width { get; private set; }
+
+		public string Message()
+		{
+			return "VDV";
+		}
+
+		public IField[,] Fields
+		{
+			get;private set;
+		}
+	}
 }
