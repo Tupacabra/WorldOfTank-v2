@@ -11,9 +11,9 @@ namespace Game.Core.Interfaces.Location.Models
 		public int Height { get; set; }
 		public int Width { get; set; }
 
-		public abstract IEnumerable<Field> GetFields(int x, int y);
+		public abstract IEnumerable<Location.Field> GetFields(int x, int y);
 
-		public abstract class Field
+		public class Field
 		{
 			 public int Type { get; set; }
 		}

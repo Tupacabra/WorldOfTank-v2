@@ -10,6 +10,7 @@ namespace Game.Core.Interfaces.Location.Models
 	{
 		public int Height { get; set; }
 		public int Width { get; set; }
+		public int PlayerNumber { get; set; }
 
 	}
 }

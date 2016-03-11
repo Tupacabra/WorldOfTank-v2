@@ -26,14 +26,14 @@ namespace Game
 				});
 				
 
-				for (int i = 0; i < map.Height; i++)
-				{
-					for (int j = 0; j < map.Width; j++)
-					{
-						Console.Write(" | "+(map.Fields[i,j].IsMoveAble ?"+" :"-"));
-					}
-					Console.WriteLine(" |");
-				}
+				//for (int i = 0; i < map.Height; i++)
+				//{
+				//	for (int j = 0; j < map.Width; j++)
+				//	{
+				//		Console.Write(" | "+(map.Fields[i,j].IsMoveAble ?"+" :"-"));
+				//	}
+				//	Console.WriteLine(" |");
+				//}
 				ConsoleKeyInfo info = Console.ReadKey();
 				while (info.Key != ConsoleKey.Escape )
 				{
