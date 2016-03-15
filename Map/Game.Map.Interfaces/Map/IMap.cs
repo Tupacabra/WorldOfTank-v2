@@ -16,6 +16,7 @@ namespace Game.Map.Interfaces.Map
 		/// Get Fields
 		/// </summary>
 		IField[,] Fields { get; }
+		int MaxPlayers { get; }
 		int Height { get; }
 		int Width { get;  }
 	}

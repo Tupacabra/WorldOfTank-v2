@@ -5,44 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 using Game.Core.Interfaces.GameSession;
 using Game.Core.Interfaces.GameSession.Models;
+using Game.Core.Interfaces.UI;
 using Game.IoC;
 using Game.IoC.Implementation;
 
 namespace Game
 {
+	
+
 	class Program
 	{
 		static void Main(string[] args)
 		{
+			var gameParams = new NewGameParams()
+				{
+					MapHeight = 10,
+					MapWidth = 20,
+					PlayerNumber = 2
+				};
 			using (var container = new IoCContainer())
 			{
 
 				var gameManager = container.GetService<IGameSession>();
-				var game = gameManager.NewGame(new NewGameParams()
-				{
-					MapHeight = 10,
-					MapWidth = 10,
-					PlayerNumber = 1
-				});
 				
+				ICurrentGame game = gameManager.NewGame(gameParams);
 
-				//for (int i = 0; i < map.Height; i++)
-				//{
-				//	for (int j = 0; j < map.Width; j++)
-				//	{
-				//		Console.Write(" | "+(map.Fields[i,j].IsMoveAble ?"+" :"-"));
-				//	}
-				//	Console.WriteLine(" |");
-				//}
-				ConsoleKeyInfo info = Console.ReadKey();
-				while (info.Key != ConsoleKey.Escape )
-				{
-					Console.Write(info.Key);
-
-
-					info = Console.ReadKey();
-				}
-				
+				game.Start();
 
 			}
 		}

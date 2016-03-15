@@ -8,6 +8,6 @@ namespace Game.Core.Interfaces.Location
 {
 	public interface ILocationManager
 	{
-		Models.Location CreateLocation(Models.LocationParams param);
+		Models.ILocation CreateLocation(Models.LocationParams param);
 	}
 }

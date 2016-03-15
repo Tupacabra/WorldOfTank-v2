@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Game.Player.Interfaces
 {
-    public interface IPlayer
-    {
+	public interface IPlayer
+	{
+		int Id { get; }
 		int XPosition { get; set; }
 		int YPosition { get; set; }
 	}

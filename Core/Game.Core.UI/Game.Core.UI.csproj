@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UIDrawing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIDrawing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game.Core.Interfaces\Game.Core.Interfaces.csproj">
