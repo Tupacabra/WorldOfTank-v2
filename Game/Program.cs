@@ -21,7 +21,7 @@ namespace Game
 				{
 					MapHeight = 10,
 					MapWidth = 20,
-					PlayerNumber = 2
+					PlayerNumber = 1
 				};
 			using (var container = new IoCContainer())
 			{
