@@ -61,13 +61,17 @@ namespace Game.Core.Location
 						return;
 					}
 				}
-				if (newXpos >= 0 && newYpos >= 0 && newXpos < this.Width && newYpos < this.Width&&_map.Fields[newXpos, newYpos].IsMoveAble)
+				if (this.TryMove(user, newXpos, newYpos))
 				{
-					user.XPosition = newXpos;
-					user.YPosition = newYpos;
+					user.MoveTo(newXpos, newYpos);
 				}
-
 			}
+		}
+
+		bool TryMove(IPlayer user, int newXpos, int newYpos)
+		{
+			return newXpos >= 0 && newYpos >= 0 && newXpos < this.Width && newYpos < this.Width &&
+			       _map.Fields[newXpos, newYpos].IsMoveAble;
 			
 		}
 

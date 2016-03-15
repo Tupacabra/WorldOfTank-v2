@@ -15,47 +15,19 @@ namespace Game.Core.Location
 	public class LocationManager: ILocationManager
 	{
 		private readonly IMapWorker _mapWorker;
+		private IPlayerCreator _playerCreator;
 
-		public LocationManager(IMapWorker mapWorker)
+		public LocationManager(IMapWorker mapWorker, IPlayerCreator playerCreator)
 		{
 			_mapWorker = mapWorker;
+			_playerCreator = playerCreator;
 		}
 
 
-		IEnumerable<IPlayer> CreatePlayerList(IMap map,int playerNumber)
-		{
-			if (map.MaxPlayers < playerNumber)
-			{
-				throw new IndexOutOfRangeException("playerNumber");
-			}
-			Random r=new Random();
-			List<IPlayer> players = new List<IPlayer>();
-			
-			for (int i = 0; i < playerNumber; i++)
-			{
-				var xPos = r.Next(map.Height);
-				var yPos = r.Next(map.Width);
-				while (!map.Fields[xPos,yPos].IsMoveAble&& (!players.Any(n=>n.XPosition==xPos&&n.YPosition==yPos)))
-				{
-					xPos = r.Next(map.Height);
-					yPos = r.Next(map.Width);
-				}
-
-				var newPlayer = new Player()
-				{
-					Id = i+1,
-					XPosition = xPos,
-					YPosition = yPos
-				};
-
-				players.Add(newPlayer);
-			}
-			return players;
-		} 
 		public Interfaces.Location.Models.ILocation CreateLocation(LocationParams param)
 		{
 			var map = _mapWorker.CreateMap(new MapCreateRequest() {Height = param.Height, Width = param.Width});
-			var players = CreatePlayerList(map,param.PlayerNumber);
+			var players = _playerCreator.CreatePlayers(map,param.PlayerNumber);
 			return new Location(players, map);
 		}
 	}

@@ -26,6 +26,7 @@ namespace Game.IoC.Implementation
 			_container.Register<IFieldWorker, FieldWorker>();
 			_container.Register<IMapWorker, MapCreator> ();
 			_container.Register<ILocationManager, LocationManager>();
+		    _container.Register<Player.Interfaces.IPlayerCreator, Player.Implementation.PlayerCreator>();
 			_container.Register<IGameSession, GameSession>();
 			_container.Register<IUIDrawing, UIDrawing>();
 		}

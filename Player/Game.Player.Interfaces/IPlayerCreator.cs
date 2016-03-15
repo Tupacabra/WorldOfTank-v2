@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.Map.Interfaces.Map;
 
 namespace Game.Player.Interfaces
 {
-	public interface IPlayer
+	public interface IPlayerCreator
 	{
-		int Id { get; }
-		int XPosition { get; }
-		int YPosition { get; }
-
-		void MoveTo(int x, int y);
+		IEnumerable<IPlayer> CreatePlayers(IMap map, int playerNumber);
 	}
-
 }

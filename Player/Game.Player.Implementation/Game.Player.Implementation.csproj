@@ -41,9 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Map\Game.Map.Interfaces\Game.Map.Interfaces.csproj">
+      <Project>{a3d6ff35-bf27-4230-91eb-8edd14cc409b}</Project>
+      <Name>Game.Map.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Game.Player.Interfaces\Game.Player.Interfaces.csproj">
       <Project>{cde54b63-7c60-49ea-8737-a09bd6f1c7fa}</Project>
       <Name>Game.Player.Interfaces</Name>
