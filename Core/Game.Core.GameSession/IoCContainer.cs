@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.Core.GameSession;
 using Game.Core.Interfaces.GameSession;
 using Game.Core.Interfaces.Location;
 using Game.Core.Interfaces.UI;
@@ -15,19 +10,19 @@ using Game.Map.Interfaces.FieldWorker;
 using Game.Map.Interfaces.MapWorker;
 using LightInject;
 
-namespace Game.IoC.Implementation
+namespace Game.Core.GameSession
 {
-    public class IoCContainer : IIoCContainer
+    class IoCContainer:IDisposable
     {
 	    private readonly LightInject.ServiceContainer _container = new ServiceContainer();
 
 	    public IoCContainer()
 	    {
+			_container.SetDefaultLifetime<PerContainerLifetime>();
 			_container.Register<IFieldWorker, FieldWorker>();
 			_container.Register<IMapWorker, MapCreator> ();
 			_container.Register<ILocationManager, LocationManager>();
 		    _container.Register<Player.Interfaces.IPlayerCreator, Player.Implementation.PlayerCreator>();
-			_container.Register<IGameSession, GameSession>();
 			_container.Register<IUIDrawing, UIDrawing>();
 		}
 

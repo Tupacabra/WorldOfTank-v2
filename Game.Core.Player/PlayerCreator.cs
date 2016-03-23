@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Game.Map.Interfaces.Map;
 using Game.Player.Interfaces;
 
-namespace Game.Player.Implementation
+namespace Game.Core.Player
 {
 	public class PlayerCreator:IPlayerCreator
 	{
@@ -29,7 +27,7 @@ namespace Game.Player.Implementation
 					yPos = r.Next(map.Width);
 				}
 
-				var newPlayer = new Player(i + 1)
+				var newPlayer = new Core.Player.Player(i + 1)
 				{
 					XPosition = xPos,
 					YPosition = yPos
@@ -39,5 +37,6 @@ namespace Game.Player.Implementation
 			}
 			return players;
 		}
+		
 	}
 }

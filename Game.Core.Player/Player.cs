@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.Player.Interfaces;
+﻿using Game.Player.Interfaces;
 
-namespace Game.Player.Implementation
+namespace Game.Core.Player
 {
     public class Player: IPlayer
 	{

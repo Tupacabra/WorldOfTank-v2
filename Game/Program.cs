@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.Core.GameManager;
 using Game.Core.Interfaces.GameSession;
 using Game.Core.Interfaces.GameSession.Models;
-using Game.Core.Interfaces.UI;
-using Game.IoC;
-using Game.IoC.Implementation;
 
 namespace Game
 {
@@ -23,16 +21,31 @@ namespace Game
 					MapWidth = 20,
 					PlayerNumber = 1
 				};
-			using (var container = new IoCContainer())
+			using (IGameManager gameManager = new GameManager())
 			{
-
-				var gameManager = container.GetService<IGameSession>();
-				
 				ICurrentGame game = gameManager.NewGame(gameParams);
-
 				game.Start();
 
 			}
 		}
 	}
 }
+//1. Init GameParams
+//2. GameManager
+// - NewGame
+// - SaveGame
+// - LoadGame
+// - ExitGame
+//3. GameType -> GameParams
+
+//4. Game
+// - Start
+// - Stop
+// - Pause
+// - MapStructure
+// - Player[]
+
+// Player
+
+// Location
+// - MovePlayer(Left)
