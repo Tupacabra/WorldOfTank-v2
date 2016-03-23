@@ -58,14 +58,6 @@
       <Project>{a3d6ff35-bf27-4230-91eb-8edd14cc409b}</Project>
       <Name>Game.Map.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Player\Game.Player.Implementation\Game.Player.Implementation.csproj">
-      <Project>{29df4a25-b9f3-49fa-abd0-aa16e9a65b9e}</Project>
-      <Name>Game.Player.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Player\Game.Player.Interfaces\Game.Player.Interfaces.csproj">
-      <Project>{cde54b63-7c60-49ea-8737-a09bd6f1c7fa}</Project>
-      <Name>Game.Player.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Game.Core.Interfaces\Game.Core.Interfaces.csproj">
       <Project>{44e7f299-f2dc-49a6-b501-1d3fcfeb1c56}</Project>
       <Name>Game.Core.Interfaces</Name>

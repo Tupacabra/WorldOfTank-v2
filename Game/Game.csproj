@@ -50,17 +50,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Game.Core.GameSession\Game.Core.GameManager.csproj">
+      <Project>{92c35456-1699-4f4a-b199-0d595416bc92}</Project>
+      <Name>Game.Core.GameManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Game.Core.Interfaces\Game.Core.Interfaces.csproj">
       <Project>{44e7f299-f2dc-49a6-b501-1d3fcfeb1c56}</Project>
       <Name>Game.Core.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoCResolver\Game.IoC.Implementation\Game.IoC.Implementation.csproj">
-      <Project>{cbb10d15-9d6c-4533-921c-b1ae09b47b28}</Project>
-      <Name>Game.IoC.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoCResolver\Game.IoC\Game.IoC.csproj">
-      <Project>{19e04ff3-a98e-4f4f-9685-4719485f8ff0}</Project>
-      <Name>Game.IoC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
