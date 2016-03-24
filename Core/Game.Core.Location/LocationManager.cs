@@ -15,7 +15,7 @@ namespace Game.Core.Location
 	public class LocationManager: ILocationManager
 	{
 		private readonly IMapWorker _mapWorker;
-		private IPlayerCreator _playerCreator;
+		private readonly IPlayerCreator _playerCreator;
 
 		public LocationManager(IMapWorker mapWorker, IPlayerCreator playerCreator)
 		{
@@ -26,9 +26,15 @@ namespace Game.Core.Location
 
 		public Interfaces.Location.Models.ILocation CreateLocation(LocationParams param)
 		{
-			var map = _mapWorker.CreateMap(new MapCreateRequest() {Height = param.Height, Width = param.Width});
-			var players = _playerCreator.CreatePlayers(map,param.PlayerNumber);
-			return new Location(players, map);
+			var mapParams = new MapCreateRequest() {Height = param.Height, Width = param.Width};
+			var map = _mapWorker.CreateMap(mapParams);
+			if (map.MaxPlayers < param.PlayerNumber)
+			{
+				throw new ArgumentException("PlayerNumber");
+			}
+			var players = _playerCreator.CreatePlayers(param.PlayerNumber);
+			var location = new Location(map,players);
+			return location;
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace Game.Core.GameManager
     public class GameManager:IGameManager,IDisposable
     {
 	    private IoCContainer _serviceContainer;
-	   
+	    private IUIDrawing _currentUI;
 
 	    public GameManager()
 	    {
@@ -33,13 +33,14 @@ namespace Game.Core.GameManager
 
 			return _serviceContainer.GetService<ILocationManager>().CreateLocation(locationParam);
 		}
+
+
 	    public ICurrentGame NewGame(NewGameParams param)
 	    {
+
 			var location = this.CreateLocation(param);
 		    var ui = _serviceContainer.GetService<IUIDrawing>();
-			var result = new CurrentGame(ui, location);
-
-		    return result;
+			return new CurrentGame(ui, location);
 
 	    }
 

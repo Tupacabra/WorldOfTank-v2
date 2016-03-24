@@ -109,7 +109,7 @@ namespace Game.Core.UI
 				for (int j = 0; j < location.Width; j++)
 				{
 					var layouts = location.GetFields(i, j).ToArray();
-					Console.Write(" | "+layouts.Last().Label);
+					Console.Write(" | "+(int)layouts.Last().Type);
 					
 				}
 				Console.WriteLine(" |");

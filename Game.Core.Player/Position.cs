@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Game.Core.Interfaces.Location.Models;
 
-namespace Game.Player.Interfaces
+namespace Game.Core.Player
 {
-	public interface IPlayerCreator
+	internal class Position : IPosition
 	{
-		IEnumerable<IPlayer> CreatePlayers(int playerNumber);
+		public int X { get; set; }
+
+		public int Y { get; set; }
 	}
 }

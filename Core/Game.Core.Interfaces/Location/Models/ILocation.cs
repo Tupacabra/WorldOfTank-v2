@@ -17,7 +17,13 @@ namespace Game.Core.Interfaces.Location.Models
 	}
 	public class Field
 	{
-		public int Type { get; set; }
-		public string Label { get; set; }
+		public FieldType Type { get; set; }
+	}
+
+	public enum FieldType
+	{
+		Location,
+		BlokedField,
+		Player
 	}
 }

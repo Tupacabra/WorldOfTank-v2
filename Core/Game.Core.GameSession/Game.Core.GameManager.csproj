@@ -50,6 +50,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Game.Core.Player\Game.Core.Player.csproj">
+      <Project>{8a482484-09f7-4f4d-8316-497f70a2f819}</Project>
+      <Name>Game.Core.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Map\Game.Map.Implementation\Game.Map.Implementation.csproj">
       <Project>{785fb3e2-8c86-45a2-9949-17e94c0d3d24}</Project>
       <Name>Game.Map.Implementation</Name>

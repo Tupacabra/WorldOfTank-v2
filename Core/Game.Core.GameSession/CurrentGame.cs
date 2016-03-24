@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Game.Core.Interfaces.GameSession.Models;
 using Game.Core.Interfaces.Location.Models;
 using Game.Core.Interfaces.UI;
+using Game.Player.Interfaces;
 
 namespace Game.Core.GameSession
 {
@@ -17,18 +18,39 @@ namespace Game.Core.GameSession
 		{
 			this.ui = ui;
 			this.location = location;
-			ui.OnDraw += (sender, direction) =>
-			{
-				int userIndex = Convert.ToInt32(sender);
-				location.MovePlayer(userIndex, direction);
-			};
 		}
 
 		public void Start()
 		{
-			
-			ui.DrawLocation(this.location);
+			ui.OnDraw += UiOnOnDraw;
 
+			ui.DrawLocation(this.location);
+		}
+
+		private void UiOnOnDraw(object sender, MoveDirection direction)
+		{
+			int userIndex = Convert.ToInt32(sender);
+			location.MovePlayer(userIndex, direction);
+		}
+
+		public void Pause()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Stop()
+		{
+			ui.OnDraw -= UiOnOnDraw;
+		}
+
+		public ILocation MapLocation
+		{
+			get { throw new NotImplementedException(); }
+		}
+
+		public IEnumerable<IPlayer> Players
+		{
+			get { throw new NotImplementedException(); }
 		}
 	}
 }

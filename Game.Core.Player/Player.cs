@@ -1,23 +1,27 @@
-﻿using Game.Player.Interfaces;
+﻿using Game.Core.Interfaces.Location.Models;
+using Game.Player.Interfaces;
 
 namespace Game.Core.Player
 {
     public class Player: IPlayer
 	{
-	    public Player(int id)
+	    public Player(int playerId)
 	    {
-		    Id = id;
+		    this.Id = playerId;
 	    }
+
 		public int Id { get; private set; }
 
-	    public int XPosition { get;  set; }
+		readonly Position _currentPosition =new Position();
+		public IPosition CurentPosition
+	    {
+		    get { return _currentPosition; }
+	    }
 
-	    public int YPosition { get;  set; }
-	    public void MoveTo(int x, int y)
-		{
-			XPosition = x;
-			YPosition = y;
+	    public void SetPosition(IPosition newPosition)
+	    {
+		    _currentPosition.X = newPosition.X;
+			_currentPosition.Y = newPosition.Y;
 		}
-	
-}
+	}
 }

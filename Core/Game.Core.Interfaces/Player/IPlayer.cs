@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.Core.Interfaces.Location.Models;
 
 namespace Game.Player.Interfaces
 {
 	public interface IPlayer
 	{
 		int Id { get; }
-		int XPosition { get; }
-		int YPosition { get; }
-
-		void MoveTo(int x, int y);
+		IPosition CurentPosition { get; }
+		void SetPosition(IPosition newPosition);
 	}
 
 }

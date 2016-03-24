@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Core.Interfaces.Location.Models;
 using Game.Map.Interfaces.Map;
 using Game.Player.Interfaces;
 
@@ -8,35 +9,17 @@ namespace Game.Core.Player
 {
 	public class PlayerCreator:IPlayerCreator
 	{
-		public IEnumerable<IPlayer> CreatePlayers(IMap map, int playerNumber)
+
+		public IEnumerable<IPlayer> CreatePlayers(int playerNumber)
 		{
-			if (map.MaxPlayers < playerNumber)
+			var players = new List<IPlayer>();
+
+			for (var i = 0; i < playerNumber; i++)
 			{
-				throw new IndexOutOfRangeException("playerNumber");
-			}
-			Random r = new Random();
-			List<IPlayer> players = new List<IPlayer>();
-
-			for (int i = 0; i < playerNumber; i++)
-			{
-				var xPos = r.Next(map.Height);
-				var yPos = r.Next(map.Width);
-				while (!map.Fields[xPos, yPos].IsMoveAble && (!players.Any(n => n.XPosition == xPos && n.YPosition == yPos)))
-				{
-					xPos = r.Next(map.Height);
-					yPos = r.Next(map.Width);
-				}
-
-				var newPlayer = new Core.Player.Player(i + 1)
-				{
-					XPosition = xPos,
-					YPosition = yPos
-				};
-
+				var newPlayer = new Core.Player.Player(i + 1);
 				players.Add(newPlayer);
 			}
 			return players;
 		}
-		
 	}
 }

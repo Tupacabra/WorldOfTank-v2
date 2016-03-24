@@ -46,6 +46,7 @@
     <Compile Include="Location\ILocationManager.cs" />
     <Compile Include="Location\Models\ILocation.cs" />
     <Compile Include="Location\Models\LocationParams.cs" />
+    <Compile Include="Location\Models\IPosition.cs" />
     <Compile Include="Player\IPlayer.cs" />
     <Compile Include="Player\IPlayerCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

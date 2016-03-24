@@ -13,78 +13,115 @@ namespace Game.Core.Location
 	sealed class Location:ILocation
 	{
 		private readonly IMap _map;
-		private readonly IEnumerable<IPlayer> _players;
+		private IEnumerable<IPlayer> _players;
+		private static Random r=new Random();
 
-		public Location(IEnumerable<IPlayer> players, IMap map)
+		void SetPlayersPosiotion(IMap map, IEnumerable<IPlayer> players)
 		{
-			this._players = players;
-			this._map = map;
-			this.Height = map.Height;
-			this.Width = map.Width;
+			foreach (var player in players)
+			{
+				var xPos = r.Next(map.Height);
+				var yPos = r.Next(map.Width);
+
+				while (map.Fields[xPos, yPos].IsMoveAble &&
+						(!players.Any(n => n.CurentPosition.X == xPos && n.CurentPosition.Y == yPos))
+					)
+				{
+					xPos = r.Next(map.Height);
+					yPos = r.Next(map.Width);
+				}
+				var newPosition = new Position() {X = xPos, Y = yPos};
+				player.SetPosition(newPosition);
+			}
 		}
 
-		public int Height { get; private set; }
+		public Location(IMap map,IEnumerable<IPlayer> players)
+		{
+			this._map = map;
+			_players = players;
+			SetPlayersPosiotion(map, _players);
+		}
 
-		public int Width { get; private set; }
+
+
+
+		public int Height { get { return _map.Height; } }
+
+		public int Width { get { return _map.Width; } }
 		public int PlayerCount { get { return _players.Count(); } }
+
 		public void MovePlayer(int userIndex, MoveDirection direction)
 		{
 			var user = _players.Skip(userIndex-1).FirstOrDefault();
 			if (user != null)
 			{
-				int newXpos = user.XPosition,
-					newYpos = user.YPosition;
+				var newPosition = new Position()
+				{
+					X = user.CurentPosition.X,
+					Y = user.CurentPosition.Y
+				};
+				
 				switch (direction)
 				{
 					case MoveDirection.Botton:
 					{
-							newXpos++;
+						newPosition.X++;
 						break;
 					}
 					case MoveDirection.Left:
 					{
-							newYpos--;
+							newPosition.Y--;
 						break;
 					}
 					case MoveDirection.Right:
 					{
-							newYpos++;
-						break;
+							newPosition.Y++;
+							break;
 					}
 					case MoveDirection.Top:
 					{
-							newXpos--;
-						break;
+							newPosition.X--;
+							break;
 					}
 					default:
 					{
 						return;
 					}
 				}
-				if (this.TryMove(user, newXpos, newYpos))
+				if (this.TryMove(newPosition))
 				{
-					user.MoveTo(newXpos, newYpos);
+					user.SetPosition(newPosition);
 				}
 			}
 		}
 
-		bool TryMove(IPlayer user, int newXpos, int newYpos)
+		bool TryMove(IPosition newPosition)
 		{
-			return newXpos >= 0 && newYpos >= 0 && newXpos < this.Width && newYpos < this.Width &&
-			       _map.Fields[newXpos, newYpos].IsMoveAble;
+			var isInRange = newPosition.X >= 0 && newPosition.Y >= 0 && newPosition.X < this.Height && newPosition.Y < this.Width;
+
+			return isInRange &&
+			       _map.Fields[newPosition.X, newPosition.Y].IsMoveAble;
 			
 		}
 
 		public IEnumerable<Field> GetFields(int x, int y)
 		{
-			if (_map.Height>x&&_map.Width>y)
+			if (_map.Height <= x || _map.Width <= y) yield break;
+			var map = this._map.Fields[x, y];
+
+			yield return new Field()
 			{
-				var field = this._map.Fields[x, y];
-				yield return new Field() { Type = Convert.ToInt32(field.IsMoveAble), Label = field.IsMoveAble ?"+" : "-" };
-				foreach (var player in this._players.Where(n => n.XPosition == x && n.YPosition == y).Select(n => new Field() { Type = 3 ,Label = n.Id.ToString()}))
-				{
-					yield return player;
-				}
+				Type = map.IsMoveAble
+					? FieldType.Location
+					: FieldType.BlokedField
+			};
+
+			foreach (
+				var playerField in
+					this._players.Where(n => n.CurentPosition.X == x && n.CurentPosition.Y == y).Select(n => new Field() {Type = FieldType.Player}))
+
+			{
+				yield return playerField;
 			}
 		}
 
