@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game.Core.Interfaces.Location.Models;
-using Game.Core.Interfaces.UI;
 using Game.Player.Interfaces;
 
 namespace Game.Core.Interfaces.GameSession.Models

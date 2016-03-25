@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Game.Core.GameManager.Interfaces;
 using Game.Core.Interfaces.GameSession.Models;
 using Game.Core.Interfaces.Location.Models;
-using Game.Core.Interfaces.UI;
 using Game.Player.Interfaces;
 
-namespace Game.Core.GameSession
+namespace Game.Core.GameManager.GameManager
 {
 	class CurrentGame: ICurrentGame
 	{

@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.Core.GameSession;
+using Game.Core.GameManager.Interfaces;
 using Game.Core.Interfaces.GameSession;
 using Game.Core.Interfaces.GameSession.Models;
-using Game.Core.Interfaces.Location;
 using Game.Core.Interfaces.Location.Models;
-using Game.Core.Interfaces.UI;
 
-namespace Game.Core.GameManager
+namespace Game.Core.GameManager.GameManager
 {
-    public class GameManager:IGameManager,IDisposable
+    public class GameManager:IGameManager
     {
 	    private IoCContainer _serviceContainer;
 	    private IUIDrawing _currentUI;
 
-	    public GameManager()
+	    public GameManager(IUIDrawing currentUi)
 	    {
+		    _currentUI = currentUi;
 		    this._serviceContainer = new IoCContainer();
 	    }
 
@@ -39,8 +34,7 @@ namespace Game.Core.GameManager
 	    {
 
 			var location = this.CreateLocation(param);
-		    var ui = _serviceContainer.GetService<IUIDrawing>();
-			return new CurrentGame(ui, location);
+			return new CurrentGame(_currentUI, location);
 
 	    }
 

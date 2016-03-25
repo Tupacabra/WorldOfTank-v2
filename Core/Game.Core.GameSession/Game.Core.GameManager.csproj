@@ -44,35 +44,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CurrentGame.cs" />
-    <Compile Include="GameManager.cs" />
-    <Compile Include="IoCContainer.cs" />
+    <Compile Include="GameManager\CurrentGame.cs" />
+    <Compile Include="GameManager\GameManager.cs" />
+    <Compile Include="GameManager\IoCContainer.cs" />
+    <Compile Include="Interfaces\FieldWorker\IFieldWorker.cs" />
+    <Compile Include="Interfaces\ILocationManager.cs" />
+    <Compile Include="Interfaces\IPlayerCreator.cs" />
+    <Compile Include="Interfaces\IUIDrawing.cs" />
+    <Compile Include="Interfaces\MapWorker\IMapWorker.cs" />
+    <Compile Include="Interfaces\MapWorker\Models\MapCreateRequest.cs" />
+    <Compile Include="Interfaces\Map\IMap.cs" />
+    <Compile Include="Interfaces\Map\Models\IField.cs" />
+    <Compile Include="Location\Location.cs" />
+    <Compile Include="Location\LocationManager.cs" />
+    <Compile Include="Location\Position.cs" />
+    <Compile Include="Map\FieldWorker\Field.cs" />
+    <Compile Include="Map\FieldWorker\FieldWorker.cs" />
+    <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\MapWorker\MapCreator.cs" />
+    <Compile Include="Player\Player.cs" />
+    <Compile Include="Player\PlayerCreator.cs" />
+    <Compile Include="Player\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Game.Core.Player\Game.Core.Player.csproj">
-      <Project>{8a482484-09f7-4f4d-8316-497f70a2f819}</Project>
-      <Name>Game.Core.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Map\Game.Map.Implementation\Game.Map.Implementation.csproj">
-      <Project>{785fb3e2-8c86-45a2-9949-17e94c0d3d24}</Project>
-      <Name>Game.Map.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Map\Game.Map.Interfaces\Game.Map.Interfaces.csproj">
-      <Project>{a3d6ff35-bf27-4230-91eb-8edd14cc409b}</Project>
-      <Name>Game.Map.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Game.Core.Interfaces\Game.Core.Interfaces.csproj">
       <Project>{44e7f299-f2dc-49a6-b501-1d3fcfeb1c56}</Project>
       <Name>Game.Core.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Game.Core.Location\Game.Core.Location.csproj">
-      <Project>{43ca92ca-144f-463c-b2b4-47185aaafc7f}</Project>
-      <Name>Game.Core.Location</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Game.Core.UI\Game.Core.UI.csproj">
-      <Project>{815275fd-38c1-4623-b985-15c5aec56cf3}</Project>
-      <Name>Game.Core.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

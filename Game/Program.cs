@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game.Core.GameManager;
+using Game.Core.GameManager.GameManager;
+using Game.Core.GameManager.Interfaces;
 using Game.Core.Interfaces.GameSession;
 using Game.Core.Interfaces.GameSession.Models;
+using Game.Core.UI;
 
 namespace Game
 {
@@ -21,7 +24,9 @@ namespace Game
 					MapWidth = 20,
 					PlayerNumber = 1
 				};
-			using (IGameManager gameManager = new GameManager())
+			var ui = new UIDrawing();
+
+			using (IGameManager gameManager = new GameManager(ui))
 			{
 				ICurrentGame game = gameManager.NewGame(gameParams);
 				game.Start();

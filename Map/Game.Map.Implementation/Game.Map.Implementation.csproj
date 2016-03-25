@@ -46,12 +46,6 @@
     <Compile Include="MapWorker\MapCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Game.Map.Interfaces\Game.Map.Interfaces.csproj">
-      <Project>{a3d6ff35-bf27-4230-91eb-8edd14cc409b}</Project>
-      <Name>Game.Map.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

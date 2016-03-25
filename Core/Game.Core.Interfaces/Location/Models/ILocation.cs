@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Game.Core.Interfaces.UI;
 
 namespace Game.Core.Interfaces.Location.Models
 {
@@ -25,5 +24,13 @@ namespace Game.Core.Interfaces.Location.Models
 		Location,
 		BlokedField,
 		Player
+	}
+	public enum MoveDirection
+	{
+		None,
+		Top,
+		Left,
+		Right,
+		Botton
 	}
 }

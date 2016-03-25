@@ -1,18 +1,15 @@
 ﻿using System;
-using Game.Core.Interfaces.GameSession;
-using Game.Core.Interfaces.Location;
-using Game.Core.Interfaces.UI;
-using Game.Core.Location;
+using Game.Core.GameManager.Interfaces;
+using Game.Core.GameManager.Interfaces.FieldWorker;
+using Game.Core.GameManager.Interfaces.MapWorker;
+using Game.Core.GameManager.Location;
+using Game.Core.GameManager.Map.FieldWorker;
+using Game.Core.GameManager.Map.MapWorker;
+using Game.Core.GameManager.Player;
 using Game.Core.Player;
-using Game.Core.UI;
-using Game.Map.Implementation.FieldWorker;
-using Game.Map.Implementation.MapWorker;
-using Game.Map.Interfaces.FieldWorker;
-using Game.Map.Interfaces.MapWorker;
-using Game.Player.Interfaces;
 using LightInject;
 
-namespace Game.Core.GameSession
+namespace Game.Core.GameManager.GameManager
 {
     class IoCContainer:IDisposable
     {
@@ -25,7 +22,6 @@ namespace Game.Core.GameSession
 			_container.Register<IMapWorker, MapCreator> ();
 			_container.Register<ILocationManager, LocationManager>();
 		    _container.Register<IPlayerCreator, PlayerCreator>();
-			_container.Register<IUIDrawing, UIDrawing>();
 		}
 
 	    public T GetService<T>()
