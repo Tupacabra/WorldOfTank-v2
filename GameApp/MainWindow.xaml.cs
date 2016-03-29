@@ -52,7 +52,7 @@ namespace GameApp
 
 		public void ChangeStep(int value)
 		{
-			StepState.Dispatcher.InvokeAsync(() =>
+			this.Dispatcher.InvokeAsync(() =>
 			{
 				StepState.Content = value + " шагов";
 			});
@@ -62,16 +62,9 @@ namespace GameApp
 
 		private void StartButtonClick(object sender, RoutedEventArgs e)
 		{
-			var param = new NewGameParams
-			{
-				MapHeight = int.Parse(MapHeight.Text),
-				MapWidth = int.Parse(MapWidth.Text),
-				Steps= int.Parse(MaxStepCount.Text),
-				PlayerNumber = 1
-			};
+			var param = this.GetParams();
 			var game=_gameManager.NewGame(param);
 			game.Start();
-			Toogle(Visibility.Hidden);
 		}
 
 
@@ -86,6 +79,16 @@ namespace GameApp
 		}
 
 
+		private NewGameParams GetParams()
+		{
+			return new NewGameParams
+			{
+				MapHeight = int.Parse(MapHeight.Text),
+				MapWidth = int.Parse(MapWidth.Text),
+				Steps = int.Parse(MaxStepCount.Text),
+				PlayerNumber = 1
+			};
+		}
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{

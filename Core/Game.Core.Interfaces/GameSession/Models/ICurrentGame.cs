@@ -13,8 +13,7 @@ namespace Game.Core.Interfaces.GameSession.Models
 		void Start();
 		void Pause();
 		void Stop();
-		ILocation MapLocation { get; }
-		IEnumerable<IPlayer> Players { get; }
+		ILocation MapLocation { get; }		
 	}
 	
 }

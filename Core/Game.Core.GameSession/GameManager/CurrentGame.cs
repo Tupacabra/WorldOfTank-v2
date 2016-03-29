@@ -12,6 +12,7 @@ namespace Game.Core.GameManager.GameManager
 		private readonly IUIDrawing _ui;
 		private readonly ILocation _location;
 		private int _currentStep = 10;
+		private int _currentUserId = 0;
 
 		public CurrentGame(IUIDrawing ui, ILocation location,int maxStep)
 		{
@@ -28,7 +29,6 @@ namespace Game.Core.GameManager.GameManager
 			_ui.ChangeStep(_currentStep);
 		}
 
-		private int _currentUserId = 0;
 
 		private void UiOnOnDraw(object sender, MoveDirection direction)
 		{
@@ -61,11 +61,6 @@ namespace Game.Core.GameManager.GameManager
 		public ILocation MapLocation
 		{
 			get {return this._location; }
-		}
-
-		public IEnumerable<IPlayer> Players
-		{
-			get { throw new NotImplementedException(); }
-		}
+		}		
 	}
 }
