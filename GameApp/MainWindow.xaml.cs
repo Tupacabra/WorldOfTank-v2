@@ -19,18 +19,46 @@ using Game.Core.Interfaces.GameSession.Models;
 
 namespace GameApp
 {
+	interface IWindowObj
+	{
+		void Toogle(Visibility visibility);
+		void ChangeStep(int value);
+		event EventHandler<Key> OnDraw;
+	}
+
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow : Window, IWindowObj
 	{
 		private readonly IGameManager _gameManager;
 		public MainWindow()
 		{
-			IUIDrawing uiDrawing = new GameApp.Modules.UIDrawing();
-			_gameManager =new GameManager(uiDrawing);
 			InitializeComponent();
+			IUIDrawing uiDrawing = new GameApp.Modules.UIDrawing(Map,this);
+			_gameManager =new GameManager(uiDrawing);
 		}
+
+		public void Toogle(Visibility visibility)
+		{
+			this.Dispatcher.InvokeAsync(() =>
+			{
+				MapHeight.Visibility = HeightLabel.Visibility = visibility;
+				MapWidth.Visibility = WidthLabel.Visibility = visibility;
+				MaxStepCount.Visibility = StepLabel.Visibility = visibility;
+				StartButton.Visibility = visibility;
+			});			
+		}
+
+		public void ChangeStep(int value)
+		{
+			StepState.Dispatcher.InvokeAsync(() =>
+			{
+				StepState.Content = value + " шагов";
+			});
+		}
+
+		public event EventHandler<Key> OnDraw;
 
 		private void StartButtonClick(object sender, RoutedEventArgs e)
 		{
@@ -38,10 +66,12 @@ namespace GameApp
 			{
 				MapHeight = int.Parse(MapHeight.Text),
 				MapWidth = int.Parse(MapWidth.Text),
+				Steps= int.Parse(MaxStepCount.Text),
 				PlayerNumber = 1
 			};
 			var game=_gameManager.NewGame(param);
 			game.Start();
+			Toogle(Visibility.Hidden);
 		}
 
 
@@ -53,6 +83,13 @@ namespace GameApp
 				_gameManager.Dispose();
 			}
 			base.OnClosed(e);
+		}
+
+
+
+		private void Window_KeyDown(object sender, KeyEventArgs e)
+		{
+			this.OnDraw(sender, e.Key);
 		}
 	}
 }

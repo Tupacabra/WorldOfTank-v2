@@ -10,6 +10,7 @@ namespace Game.Core.Interfaces.GameSession.Models
 	{
 		public int MapHeight { get; set; }
 		public int MapWidth { get; set; }
+		public int Steps { get; set; }
 		public int PlayerNumber { get; set; }
 	}
 }

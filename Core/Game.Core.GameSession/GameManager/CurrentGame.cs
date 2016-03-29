@@ -9,25 +9,42 @@ namespace Game.Core.GameManager.GameManager
 {
 	class CurrentGame: ICurrentGame
 	{
-		private readonly IUIDrawing ui;
-		private readonly ILocation location;
-		public CurrentGame(IUIDrawing ui, ILocation location)
+		private readonly IUIDrawing _ui;
+		private readonly ILocation _location;
+		private int _currentStep = 10;
+
+		public CurrentGame(IUIDrawing ui, ILocation location,int maxStep)
 		{
-			this.ui = ui;
-			this.location = location;
+			this._ui = ui;
+			this._location = location;
+			_currentStep = maxStep;
 		}
 
 		public void Start()
 		{
-			ui.OnDraw += UiOnOnDraw;
-
-			ui.DrawLocation(this.location);
+			_ui.OnDraw += UiOnOnDraw;
+			_ui.ClearMap();
+			_ui.DrawLocation(this._location);
+			_ui.ChangeStep(_currentStep);
 		}
+
+		private int _currentUserId = 0;
 
 		private void UiOnOnDraw(object sender, MoveDirection direction)
 		{
-			int userIndex = Convert.ToInt32(sender);
-			location.MovePlayer(userIndex, direction);
+			if (_currentUserId >= _location.PlayerCount)
+			{
+				_currentUserId = 0;
+				_currentStep--;
+				_ui.ChangeStep(_currentStep);
+				if (_currentStep <= 0)
+				{
+					Stop();
+				}
+			}
+			_currentUserId++;
+
+			_location.MovePlayer(_currentUserId, direction);
 		}
 
 		public void Pause()
@@ -37,12 +54,13 @@ namespace Game.Core.GameManager.GameManager
 
 		public void Stop()
 		{
-			ui.OnDraw -= UiOnOnDraw;
+			_ui.OnDraw -= UiOnOnDraw;
+			_ui.ClearMap();
 		}
 
 		public ILocation MapLocation
 		{
-			get { throw new NotImplementedException(); }
+			get {return this._location; }
 		}
 
 		public IEnumerable<IPlayer> Players

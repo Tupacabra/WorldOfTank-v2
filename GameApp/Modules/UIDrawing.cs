@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
 using Game.Core.GameManager.Interfaces;
 using Game.Core.Interfaces.Location.Models;
 
@@ -13,46 +17,94 @@ namespace GameApp.Modules
 	{
 		object objectLock = new Object();
 
-		public UIDrawing()
-		{
-			Console.WriteLine("Click for start...");
+		private Panel _panel;
+		private Dictionary<string, Zone> fieldLocation=new Dictionary<string, Zone>();
+		private IWindowObj _windowObj;
+		private ILocation _currentLocation;
 
-		}
-		public void DrawLocation(Game.Core.Interfaces.Location.Models.ILocation location)
+		public UIDrawing(Panel panel, IWindowObj windowObj)
 		{
-			Draw(0, location, MoveDirection.None);
-			ConsoleKeyInfo info = Console.ReadKey();
-			while (info.Key != ConsoleKey.Escape)
+			this._panel = panel;
+			_windowObj = windowObj;
+			_windowObj.OnDraw += (sender, args) =>
 			{
-				for (int playerIndex = 1; playerIndex <= location.PlayerCount; playerIndex++)
+				if (_currentLocation == null)
 				{
-					var direction = getMoveDirection(info.Key);
-					Console.WriteLine("Pressed: " + info.Key + ", Move Direction: " + direction);
-					Draw(playerIndex, location, direction);//event
-					info = Console.ReadKey();
+					return;
 				}
-
-			}
+				var direction = getMoveDirection(args);
+				if (OnDrawHandler != null)
+				{
+					this.OnDrawHandler(_currentLocation, direction);
+				}
+				Refresh();//event
+			};
 		}
 
-		private MoveDirection getMoveDirection(ConsoleKey key)
+		public void ClearMap()
+		{
+			Task.Factory.StartNew(() =>
+			{
+				lock (objectLock)
+				{
+					_currentLocation = null;
+					fieldLocation.Clear();
+					_panel.Dispatcher.Invoke(() =>
+					{
+						if (_panel.Children != null)
+						{
+							_panel.Children.Clear();
+						}
+						_windowObj.Toogle(Visibility.Visible);
+					});
+				}
+			});
+				
+		}
+
+
+		public void DrawLocation(ILocation location)
+		{
+			Task.Factory.StartNew(() =>
+			{
+				lock (objectLock)
+				{
+					_currentLocation = location;
+					_windowObj.Toogle(Visibility.Hidden);
+					Draw();
+				}
+			});
+		}
+
+		public void ChangeStep(int newValue)
+		{
+			Task.Factory.StartNew(() =>
+			{
+				lock (objectLock)
+				{
+					_windowObj.ChangeStep(newValue);
+				}
+			});
+		}
+
+		private MoveDirection getMoveDirection(Key key)
 		{
 			switch (key)
 			{
-				case ConsoleKey.LeftArrow:
+				case Key.Left:
 					{
 						return MoveDirection.Left;
 					}
-				case ConsoleKey.RightArrow:
+				case Key.Right:
 					{
 						return MoveDirection.Right;
 
 					}
-				case ConsoleKey.UpArrow:
+				case Key.Up:
 					{
 						return MoveDirection.Top;
 					}
-				case ConsoleKey.DownArrow:
+				case Key.Down:
 					{
 						return MoveDirection.Botton;
 					}
@@ -87,36 +139,80 @@ namespace GameApp.Modules
 			}
 		}
 
-
-		void Draw(int playerIndex, Game.Core.Interfaces.Location.Models.ILocation location, MoveDirection direction)
+		Color GetColor(FieldType type)
 		{
-			Console.Clear();
+			return type == FieldType.Player
+				? Colors.Crimson
+				: (type == FieldType.Location
+					? Colors.Green
+					: Colors.DarkOrange);
+		}
 
-			// Raise IDrawingObject's event before the object is drawn.
-			var handler = OnDrawHandler;
-			if (handler != null && playerIndex > 0)
+		void Draw()
+		{
+			lock (objectLock)
 			{
-				//direction
-				handler(playerIndex, direction);
-				Console.WriteLine("Player moved " + playerIndex.ToString());
-			}
-			else
-			{
-				Console.WriteLine("Press any key to start");
-
-			}
-			for (int i = 0; i < location.Height; i++)
-			{
-				for (int j = 0; j < location.Width; j++)
+				for (int i = 0; i < _currentLocation.Height; i++)
 				{
-					var layouts = location.GetFields(i, j).ToArray();
-					Console.Write(" | " + (int)layouts.Last().Type);
+					for (int j = 0; j < _currentLocation.Width; j++)
+					{
+						var layouts = _currentLocation.GetFields(i, j).ToArray();
 
+						FieldType type = layouts.Last().Type;
+						
+						_panel.Dispatcher.Invoke(() => {
+							var temp = new Rectangle()
+							{
+								Width = 30,
+								Height = 30,
+								Fill = new SolidColorBrush(this.GetColor(type)),
+								Margin = new Thickness(j * 30, i * 30, 0, 0)
+							};
+
+							fieldLocation.Add(i + "_" + j, new Zone() { Rectangle = temp, Type = type });
+
+							_panel.Children.Add(temp);
+
+						});
+					}
 				}
-				Console.WriteLine(" |");
 			}
+			
+		}
 
+		private void Refresh()
+		{
+			lock (objectLock)
+			{
+				if (_currentLocation == null)
+				{
+					return;
+				}
+				for (int i = 0; i < _currentLocation.Height; i++)
+				{
+					for (int j = 0; j < _currentLocation.Width; j++)
+					{
+						var layouts = _currentLocation.GetFields(i, j).ToArray();
+						FieldType type = layouts.Last().Type;
+						var zone = fieldLocation[i + "_" + j];
+						if (zone.Type != type)
+						{
+							zone.Type = type;
+							zone.Rectangle.Dispatcher.InvokeAsync(() =>
+							{
+								zone.Rectangle.Fill = new SolidColorBrush(this.GetColor(type));
+							});
 
+						}
+					}
+				}
+			}
+		}
+
+		class Zone
+		{
+			public FieldType Type { get; set; }
+			public Rectangle Rectangle { get; set; }
 		}
 	}
 }

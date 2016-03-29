@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        KeyDown="Window_KeyDown"
+        Title="MainWindow" Height="350" Width="696.41">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="57"/>
@@ -19,5 +20,6 @@
         <Label x:Name="StepLabel" Content="Steps" HorizontalAlignment="Left" Margin="0,59,0,0" VerticalAlignment="Top" Width="57"/>
         <Label x:Name="WidthLabel" Content="Width" HorizontalAlignment="Left" Margin="0,195,0,0" VerticalAlignment="Top" Width="57"/>
         <Label x:Name="HeightLabel" Content="Height" HorizontalAlignment="Left" Margin="0,124,0,0" VerticalAlignment="Top" Width="57"/>
+        <Canvas Name="Map" Grid.Column="1"/>
     </Grid>
 </Window>

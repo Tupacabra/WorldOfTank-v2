@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{4C7E2086-ED70-475F-9191-9C45EBEB176D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4F8951F5-87F8-4C0E-B53B-ADA2F1207F98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.Core.Interfaces", "Core\Game.Core.Interfaces\Game.Core.Interfaces.csproj", "{44E7F299-F2DC-49A6-B501-1D3FCFEB1C56}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C7E2086-ED70-475F-9191-9C45EBEB176D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C7E2086-ED70-475F-9191-9C45EBEB176D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C7E2086-ED70-475F-9191-9C45EBEB176D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C7E2086-ED70-475F-9191-9C45EBEB176D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44E7F299-F2DC-49A6-B501-1D3FCFEB1C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44E7F299-F2DC-49A6-B501-1D3FCFEB1C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44E7F299-F2DC-49A6-B501-1D3FCFEB1C56}.Release|Any CPU.ActiveCfg = Release|Any CPU

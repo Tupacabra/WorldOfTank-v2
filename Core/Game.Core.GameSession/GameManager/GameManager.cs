@@ -8,8 +8,8 @@ namespace Game.Core.GameManager.GameManager
 {
     public class GameManager:IGameManager
     {
-	    private IoCContainer _serviceContainer;
-	    private IUIDrawing _currentUI;
+	    private readonly IoCContainer _serviceContainer;
+	    private readonly IUIDrawing _currentUI;
 
 	    public GameManager(IUIDrawing currentUi)
 	    {
@@ -34,7 +34,7 @@ namespace Game.Core.GameManager.GameManager
 	    {
 
 			var location = this.CreateLocation(param);
-			return new CurrentGame(_currentUI, location);
+			return new CurrentGame(_currentUI, location, param.Steps);
 
 	    }
 
